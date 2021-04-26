@@ -147,7 +147,6 @@ namespace PripravaKMaturiteITP
                 }
             }
             //Vypiseme enter, abychom dalsi dotaz meli na dalsim radku
-            
             Console.WriteLine();
         }
     }
