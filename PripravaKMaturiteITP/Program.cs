@@ -33,6 +33,9 @@ namespace PripravaKMaturiteITP
             
             
             //Druhe zadani
+            Console.WriteLine("Zade, kolik chces sestavit pocitacu: ");
+            //Nacteme zadanou hodnotu od uzivatele
+            DruheZadani(Convert.ToInt32(Console.ReadLine()));
         }
 
         //Metodu vytvarime statickou z duvodu toho, ze bychom ji jinak v mainu nemohli zavolat, jako argumenty metody prijmame pole double, protoze po nas chce pouzit k vypoctu cykly
@@ -63,6 +66,58 @@ namespace PripravaKMaturiteITP
             }
             //Po konci uz zbyva pouze vypsat hodnotu promenne soucin
             Console.WriteLine("Soucin: " + soucin);
+        }
+
+        //Davame zde v argumentu uzivateli moznost kolik pocitacu chce sestrojit
+        static void DruheZadani(int pocetPocitacu)
+        {
+            //Zadani:
+            //Napište program, který bude simulovat výrobní linku počítače.
+
+            // Pro výrobu počítače je potřeba hlídat stav skladu, ze kterého se berou díly.
+
+            // Pro sestavení jednoho PC je potřeba:
+
+            // 1x case, 1x základní deska s procesorem, 2x RAM, 3x chladič.
+
+            // Je potřeba čekat na výrobní linku která:
+
+            // Za jeden výrobní cyklus se vyrobí 1x case 0.5x základní desky s procesorem, 0.7x RAM a 4x chladičů.
+
+            // Po naskladnění dostatku dílů program vypíše, kolik bylo potřeba výrobních cyklů, na sestavení jedné PC stanice
+
+            //Deklarujeme si par promennych, sestavenyPocitac, ktery nam bude rikat, zda je hotovych dost komponentu, pocitadlo, ktere nam bude rikat, kolikrat uz cyklus probehl a vsechny komponenty jako double, ktere deklarujeme na 0
+            bool sestavenyPocitac = false;
+            int pocitadlo = 0;
+            double krabice = 0;
+            double motherboard = 0;
+            double ram = 0;
+            double chladic = 0;
+            
+            
+            //Pouzijeme cyklus do while ktery nam dovoli provadet operace dokud nebude splnena podminka
+            do
+            {
+                //Pridame do skladu pocet kusu co se vyrobi za jeden cyklus
+                krabice += 1;
+                motherboard += 0.5;
+                ram += 0.7;
+                chladic += 4;
+                
+                //pridame si jedno probehnuti cyklu 
+                pocitadlo++;
+
+                if (krabice == 1 * pocetPocitacu && motherboard == 1 * pocetPocitacu && ram == 2* pocetPocitacu && chladic == 3 * pocetPocitacu)
+                {
+                    sestavenyPocitac = true;
+                }
+
+            } 
+            //Zjistujeme, zda uz mame pocitac sestaveny
+            while (!sestavenyPocitac);
+            
+            //Zaver programu 
+            Console.WriteLine($"sestaveni {pocetPocitacu} pocitacu trvalo {pocitadlo} cyklu");
         }
     }
 }
