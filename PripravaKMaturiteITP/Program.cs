@@ -33,9 +33,19 @@ namespace PripravaKMaturiteITP
             
             
             //Druhe zadani
-            Console.WriteLine("Zade, kolik chces sestavit pocitacu: ");
-            //Nacteme zadanou hodnotu od uzivatele
+            Console.WriteLine("Zadej, kolik chces sestavit pocitacu: ");
+            //Nacteme zadanou hodnotu od uzivatele a prekonvertujeme ji do pozadovaneho formatu
             DruheZadani(Convert.ToInt32(Console.ReadLine()));
+            
+            //Treti zadani 
+            
+            //Zakladame nekonecny cyklus while, ktery osetri moznost zadat cisla nekolikrat zasebou jak je uvedeno v zadani
+            while (true)
+            {
+                Console.WriteLine("Zadejte cislo: ");
+                //Nacteme zadanou hodnotu od uzivatele a prekonvertujeme ji do pozadovaneho formatu
+                TretiZadani(Convert.ToInt32(Console.ReadLine()));
+            }
         }
 
         //Metodu vytvarime statickou z duvodu toho, ze bychom ji jinak v mainu nemohli zavolat, jako argumenty metody prijmame pole double, protoze po nas chce pouzit k vypoctu cykly
@@ -86,6 +96,7 @@ namespace PripravaKMaturiteITP
 
             // Po naskladnění dostatku dílů program vypíše, kolik bylo potřeba výrobních cyklů, na sestavení jedné PC stanice
 
+            
             //Deklarujeme si par promennych, sestavenyPocitac, ktery nam bude rikat, zda je hotovych dost komponentu, pocitadlo, ktere nam bude rikat, kolikrat uz cyklus probehl a vsechny komponenty jako double, ktere deklarujeme na 0
             bool sestavenyPocitac = false;
             int pocitadlo = 0;
@@ -107,7 +118,8 @@ namespace PripravaKMaturiteITP
                 //pridame si jedno probehnuti cyklu 
                 pocitadlo++;
 
-                if (krabice == 1 * pocetPocitacu && motherboard == 1 * pocetPocitacu && ram == 2* pocetPocitacu && chladic == 3 * pocetPocitacu)
+                //podivame se, zda mame presne, nebo vice komponent ve skladu 
+                if (krabice >= 1 * pocetPocitacu && motherboard >= 1 * pocetPocitacu && ram >= 2* pocetPocitacu && chladic >= 3 * pocetPocitacu)
                 {
                     sestavenyPocitac = true;
                 }
@@ -118,6 +130,25 @@ namespace PripravaKMaturiteITP
             
             //Zaver programu 
             Console.WriteLine($"sestaveni {pocetPocitacu} pocitacu trvalo {pocitadlo} cyklu");
+        }
+
+        //Zakladame si metodu s argumentem cisla N 
+        static void TretiZadani(int cisloN)
+        {
+            //Zadani: Napište program, který umožní uživateli opakovaně zadat celé číslo N. Program následně vypíše všechna čísla v intervalu 0 – N*20, která jsou zároveň násobky čísla N.
+
+            //zalozime cyklus, ktery nam vypise vsechny vsechny cisla do N * 20
+            for (int i = 0; i < (cisloN + 1) * 20; i++)
+            {
+                //zde zaciname zkoumat, zda jsou vypsane cisla take delitelne N a pokus ano, vypiseme je do konzole,  i % cisloN nam zkouma jaky je zbytek po deleni 
+                if (i % cisloN == 0)
+                {
+                    Console.Write($"{i} ");
+                }
+            }
+            //Vypiseme enter, abychom dalsi dotaz meli na dalsim radku
+            
+            Console.WriteLine();
         }
     }
 }
